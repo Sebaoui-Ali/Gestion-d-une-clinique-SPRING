@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<title>Mes patients</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+	<header th:replace="nav :: nav" ></header>
+		<br><br><br>
+	<div class="container" >
+		<div class="card" >
+			<div class="card-header" >
+				Mes patients
+			</div>
+			
+			<div class="card-body" >
+			
+			<!-- <form method="get" th:action="@{med_patients}" >
+				<div class="form-group" >
+					<input type="text" name="keyword" th:value="${keyword}" >
+					<button class="btn btn-success" > Chercher </button>
+				</div>
+			</form> -->
+			
+				<table class="table">
+			<tr>
+				<th>Nom </th>
+				<th>Prenom </th>
+				<th>Email </th>
+				<th>Telephone </th>
+				<th>Maladie </th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="p:${med_patients}" >
+				<td th:text="${p.nom}" ></td>
+				<td th:text="${p.prenom}" ></td>
+				<td th:text="${p.email}" ></td>
+				<td th:text="${p.tel}" ></td>
+				<td th:text="${p.maladie}" ></td>
+				
+				<td><a class="btn btn-primary" 
+				th:href="@{editPatient(id=${p.id})}" >
+				Edit</a>
+				</td>
+				<td>
+					<a class="btn btn-success"th:href="@{showPatient(id=${p.id})}" >
+					Show</a>
+				</td>
+			</tr>
+		</table>
+			</div>	
+			<ul class="nav nav-pills">
+				<li  th:each="page,status:${pages}" >
+					<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" 
+					th:href="@{med_patients(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:text="${status.index}" ></a>
+				</li>
+			</ul>	
+		</div>
+	</div>
+	
+<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+	<!-- sec:authorize="hasRole('ROLE_ADMIN')" -->
+</body>
+</html>

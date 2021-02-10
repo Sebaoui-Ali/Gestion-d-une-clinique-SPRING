@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head>
+<title>Ajouter Facture</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+		<div class="container" style="padding-left:200px;">
+			<br>
+			<br>
+			<br>
+			<div class="col-md-9">
+				<div class="card" style="text-align: center;">
+
+					<div style="color:white; text-align: center; background: linear-gradient(to right, #1341A5, #1341A5);" class="card-header">
+
+						Formulaire Facture
+					</div>
+					<div class="card-body">
+						<form th:action="@{saveFacture(id=${traitement.id})}" method="post">
+
+							
+							<div class="form-group">
+								<label class="control-label">Prix : </label> <input type="text"
+									name="prix" class="form-control" th:value="${facture.prix}">
+								<span th:errors=${facture.prix} class="text-danger"></span>
+							</div>
+
+
+							
+							<button class="btn btn-success" type="submit">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+</div>
+		<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+		
+		
+		
+</body>
+</html>

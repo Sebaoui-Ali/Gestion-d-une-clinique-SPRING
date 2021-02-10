@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<meta charset="ISO-8859-1">
+<head th:replace="header :: header"></head>
+<title>Mon Compte</title>
+</head>
+<body class="category-v1 hidden-sn white-skin animated">
+
+    <!--Navigation-->
+    <header th:replace="nav :: nav" >
+
+    </header><br><br><br><br><br>
+
+    <div class="container ">
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                   
+
+                    <div class="card-body">
+                       
+
+                        <h3 style="padding-left: 180px;" th:text="'Bienvenue '+${user.nom}+' '+${user.prenom}"> 
+                             </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+
+    </div>
+    <!-- /.Main Container -->
+    </main>
+ 	<br><br><br><br>
+        <div th:replace="footer :: footer" ></div>
+    <!--/.Footer-->
+
+    <div th:replace="script :: script" ></div>
+
+
+</body>
+</html>

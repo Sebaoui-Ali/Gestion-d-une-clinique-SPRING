@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+   <head>
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- Site Metas -->
+   <title>Ma-Clinique</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- Site Icons -->
+   <link rel="shortcut icon" href="images/logo.PNG" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="images/logo.PNG">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+   <!-- Site CSS -->
+   <link rel="stylesheet" href="style.css">
+   <!-- Colors CSS -->
+   <link rel="stylesheet" href="css/colors.css">
+   <!-- ALL VERSION CSS -->
+   <link rel="stylesheet" href="css/versions.css">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="css/responsive.css">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="css/custom.css">
+   <!-- Modernizer for Portfolio -->
+   <script src="js/modernizer.js"></script>
+   <!-- [if lt IE 9] -->
+   </head>
+   <body class="clinic_version">
+      <!-- LOADER -->
+      <div id="preloader">
+         <img class="preloader" src="images/logo.PNG" alt="">
+      </div>
+      <!-- END LOADER -->
+      <header>
+               <!-- <a class="navbar-brand" href="index.html"><img style="height: 60px; width: 60px;" src="images/logo2.PNG" alt="image"></a> -->
+         <div class="header-bottom ">
+            <div class="container">
+               <nav class="main-menu">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                  </div>
+				  
+                  <div id="navbar" class="navbar-collapse collapse">
+                     <ul class="nav navbar-nav">
+                        <li style="padding-right: 20px;" ><img style="height: 60px; width: 60px;" src="images/logo.PNG" alt="#" /></li>
+                        
+                        <li><a class="active" href="/">Acceuil</a></li>
+                        <li sec:authorize="hasRole('ROLE_MEDECIN')" class="nav-item" ><a class="nav-link" th:href="@{med_patients}">Mes patients</a></li>
+                        <li sec:authorize="hasRole('ROLE_MEDECIN')" class="nav-item"><a class="nav-link" th:href="@{med_rendez}">Mes rendez-vous</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a data-scroll class="nav-link" th:href="@{medecins}">Medecins</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a data-scroll class="nav-link" th:href="@{gps}">Gestionnaire Patients</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{patients}">Patients</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{rendez_vous}">Rendez-vous</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{medicaments}">Medicaments</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{scanners}">Scanners</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{traitements}">Traitements des soins</a></li>
+                        
+                        <li sec:authorize="hasRole('ROLE_MEDECIN')" class="nav-item"><a data-scroll class="nav-link" th:href="@{med_traitements}">Mes Traitements des soins</a></li>
+                     
+                        <li sec:authorize="hasRole('ROLE_GP')" class="nav-item"><a data-scroll class="nav-link" th:href="@{factures}">Factures</a></li>
+                        </ul>
+                    <ul class="nav navbar-nav" style="padding-left: 600px;">
+                    <li sec:authorize="!isAuthenticated()" class="nav-item"><a th:href="@{login}" data-scroll class="nav-link">Connexion</a></li>
+                     <li sec:authorize="isAuthenticated()" class="nav-item"><a data-scroll class="nav-link" sec:authentication="name"></a></li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item"><a th:href="@{logout}" data-scroll class="nav-link">Deconnexion</a></li>                     
+                    </ul>
+                  </div>
+               </nav>
+            </div>
+         </div>
+      </header>
+      
+      <section layout:fragment="pageContent"></section>
+      
+      <script src="js/all.js"></script>
+      <!-- all plugins -->
+      <script src="js/custom.js"></script>
+      <!-- map -->
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNUPWkb4Cjd7Wxo-T4uoUldFjoiUA1fJc&callback=myMap"></script>
+     
+
+</body>
+</html>

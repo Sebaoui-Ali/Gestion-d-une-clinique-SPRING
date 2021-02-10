@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+<title>Ajouter Patient</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+		<div class="container" style="padding-left:200px;">
+			<br>
+			<br>
+			<br>
+			<div class="col-md-9">
+<div class="card" style="text-align: center;">
+
+					<div style="color:white; text-align: center; background: linear-gradient(to right, #1341A5, #1341A5);" class="card-header">
+
+					<!-- 
+					<div class="card-header" th:if="${patient.id==null}">
+						Formulaire d'ajout un patient
+					</div>
+					<div class="card-header" th:if="${patient.id!=null}">
+						Formulaire de mise a jour d'un patient
+					</div>
+					  -->
+					
+						Formulaire d'ajout un patient
+					</div>
+					<div class="card-header" th:if="${mode=='edit'}">
+						Formulaire de mise a jour d'un patient
+					</div>
+					<div class="card-body">
+						<form th:action="@{savePatient}" method="post">
+							<div class="form-group">
+								<label class="control-label">Nom : </label> <input type="text"
+									name="nom" class="form-control" th:value="${patient.nom}">
+								<span th:errors=${patient.nom} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Prenom : </label> <input type="text"
+									name="prenom" class="form-control" th:value="${patient.prenom}">
+								<span th:errors=${patient.prenom} class="text-danger"></span>
+							</div>
+							
+							<div class="form-group"  th:if="${mode=='new'}">
+								<label class="control-label">Genre :</label> 
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="femme" name="genre" value="femme">
+								  <label class="form-check-label" for="femme" >Femme</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="homme" name="genre" value="homme">
+								  <label class="form-check-label" for="homme">Homme</label>
+								</div>
+							</div>
+							
+							<div class="form-group" th:if = "${patient.genre=='homme' and mode=='edit'}">
+								<label class="control-label">Genre :</label> 
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="femme" name="genre" value="femme">
+								  <label class="form-check-label" for="femme" >Femme</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" checked type="radio" id="homme" name="genre" value="homme">
+								  <label class="form-check-label" for="homme">Homme</label>
+								</div>
+							</div>
+							
+							<div class="form-group" th:if = "${patient.genre=='femme'and mode=='edit'}">
+								<label class="control-label">Genre :</label> 
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" checked id="femme" name="genre" value="femme">
+								  <label class="form-check-label" for="femme" >Femme</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="homme" name="genre" value="homme">
+								  <label class="form-check-label" for="homme">Homme</label>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label">Age : </label> <input type="number"
+									name="age" class="form-control" th:value="${patient.age}">
+								<span th:errors=${patient.age} class="text-danger"></span>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label">Email : </label> <input type="text"
+									name="email" class="form-control" th:value="${patient.email}">
+								<span th:errors=${patient.email} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">CIN : </label> <input type="text"
+									name="cin" class="form-control" th:value="${patient.cin}">
+								<span th:errors=${patient.cin} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Telephone : </label> <input type="text"
+									name="tel" class="form-control" th:value="${patient.tel}">
+								<span th:errors=${patient.tel} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+							<label for="address">Adresse</label>
+								<div class="form-floating">
+								  <textarea class="form-control" th:text="${patient.address}" placeholder="" id="address" name="address">
+								  
+								  </textarea>
+								  
+								</div>
+								<span th:errors=${patient.address} class="text-danger"></span>
+							</div>
+							
+							<div class="form-group">
+							<label for="address">Maladie</label>
+								<div class="form-floating">
+								  <textarea class="form-control" th:text="${patient.maladie}" placeholder="" id="address" name="maladie">
+								  
+								  </textarea>
+								  
+								</div>
+								<span th:errors=${patient.maladie} class="text-danger"></span>
+							</div>
+							
+							<div class="form-group">
+								<select class="form-control" name="docteur_id" required="required">
+								  <option disabled="disabled" selected>Docteur</option>
+								  <option th:each="med:${docteurs}" th:value="${med.id}" th:text="${med.nom}+' '+${med.prenom}"></option>
+								</select>
+								
+							</div>
+							
+							<button class="btn btn-success" type="submit">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+</div>
+		<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+</body>
+</html>

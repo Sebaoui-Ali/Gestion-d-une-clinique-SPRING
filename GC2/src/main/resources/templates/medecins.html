@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<head th:replace="header :: header" ></head>
+<!--  
+<head th:replace="header :: header" ></head>
+<header th:replace="nav :: nav" ></header>
+<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+-->
+<title>Medecins</title>
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+		<br><br><br>
+	<div class="container" >
+		<div class="card" >
+			<div class="card-header" >
+				Liste des medecins  <a  class="btn btn-primary" th:href="@{formMedecin}">Ajouter</a>
+			</div>
+			
+			<div class="card-body" >
+			
+			<form method="get" th:action="@{medecins}" >
+				<div class="form-group" >
+					
+					<input type="text" name="keyword" th:value="${keyword}" >
+					<button class="btn btn-success" > Chercher </button>
+				</div>
+			</form>
+			
+				<table class="table" id="employeesTable">
+				<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Nom d'utilisateur</th>
+				<th>Email</th>
+				<th>Telephone</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="p:${medecins}" th:if="${keyword==''}">
+				<td th:text="${p.nom}"></td>
+				<td th:text="${p.prenom}"></td>
+				<td th:text="${p.username}"></td>
+				<td th:text="${p.email}"></td>
+				<td th:text="${p.tel}"></td>
+				<td><a onclick="return confirm('Etes vous sur de vouloir supprimer ?') " 
+				class="btn btn-danger" 
+				th:href="@{deleteMedecin(id=${p.id},keyword=${keyword},size=${size},page=${currentPage})}" >
+				Delete</a>
+				</td>
+				<td>
+					<a class="btn btn-primary"th:href="@{editMedecin(id=${p.id})}" >
+					Edit</a>
+				</td>
+				<td>
+					<a class="btn btn-success"th:href="@{showMedecin(id=${p.id})}" >
+					Show</a>
+				</td>
+				
+	  </tr>
+	  
+	  <tr th:each="p:${medecinsk}" th:if="${keyword!=''}" >
+				<td th:text="${p.nom}"></td>
+				<td th:text="${p.prenom}"></td>
+				<td th:text="${p.username}"></td>
+				<td th:text="${p.email}"></td>
+				<td th:text="${p.tel}"></td>
+				<td><a onclick="return confirm('Etes vous sur de vouloir supprimer ?') " 
+				class="btn btn-danger" 
+				th:href="@{deleteMedecin(id=${p.id},keyword=${keyword},size=${size},page=${currentPage})}" >
+				Delete</a>
+				</td>
+				<td>
+					<a class="btn btn-primary"th:href="@{editMedecin(id=${p.id})}" >
+					Edit</a>
+				</td>
+				<td>
+					<a class="btn btn-success"th:href="@{showMedecin(id=${p.id})}" >
+					Show</a>
+				</td>
+	  </tr>
+	  </tbody>
+		</table>
+			</div>	
+			<ul class="nav nav-pills">
+				<li  th:each="page,status:${pages}" th:if="${keyword==''}" >
+					<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" 
+					th:href="@{medecins(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:text="${status.index}" ></a>
+				</li>
+				
+				<li th:each="page,status:${pagesk}" th:if="${keyword!=''}" >
+					<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" 
+					th:href="@{medecinsk(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:text="${status.index}" ></a>
+				</li>
+			</ul>	
+		</div>
+	</div>
+	<br><br><br>
+	<div th:insert="footer :: footer" ></div>
+	<div th:replace="script :: script" ></div>
+	<script type="text/javascript">
+	$(document).ready( function () {
+		 var table = $('#employeesTable').DataTable({
+				"sAjaxSource": "/employees",
+				"sAjaxDataProp": "",
+				"order": [[ 0, "asc" ]],
+				"aoColumns": [
+				    { "mData": "id"},
+			      { "mData": "name" },
+					  { "mData": "lastName" },
+					  { "mData": "email" },
+					  { "mData": "phone" },
+					  { "mData": "active" }
+				]
+		 })
+	});
+	</script>
+</body>
+</html>

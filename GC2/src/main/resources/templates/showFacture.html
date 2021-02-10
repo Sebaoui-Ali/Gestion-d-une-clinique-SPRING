@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	>
+<head>
+<title>Facture</title>
+<link rel="stylesheet" href="css/showFacture.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+.logo {
+  width: 2.5cm;
+}
+
+.document-type {
+  text-align: right;
+  color: #444;
+}
+
+.conditions {
+  font-size: 0.8em;
+  color: #666;
+}
+
+.bottom-page {
+  font-size: 0.8em;
+}
+</style>
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-xs-6">
+        <img src="https://s3.eu-central-1.amazonaws.com/zl-clients-sharings/90Tech.png" class="logo">
+      </div>
+      <div class="col col-xs-6">
+        <h1 class="document-type display-4">FACTURE</h1>
+        <p class="text-right"><strong>Ref°<span th:text="${facture.id}" ></span></strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6" >
+        <p>
+          <strong th:text="${medecin.nom}+' '+${medecin.prenom}"  ></strong><br>
+          <span th:text="${patient.tel}"></span>  <br>
+          <span th:text="${patient.email}"></span> <br>
+          <span th:text="${patient.address}"></span>
+        </p>
+      </div>
+      <div class=" col-sm-6 text-right"  >
+        <br>
+        <p>
+          <strong th:text="${patient.nom}+' '+${patient.nom}"  ></strong><br>
+          CIN : <em th:text="${patient.cin}" ></em><br>
+          <span th:text="${patient.tel}"></span>  <br>
+          <span th:text="${patient.email}"></span> <br>
+          <span th:text="${patient.address}"></span>
+        </p>
+      </div>
+    </div>
+    <br>
+    <br>
+    <h6>Facture Regle le <span th:text="${date}" ></span> </h6>
+    <br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Maladie</th>
+          <th>Medicament</th>
+          <th>Periode</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td th:text="${patient.maladie}" ></td>
+          <td th:text="${medicament.name}+' '+${medicament.quantite}" ></td>
+          <td th:text="${traitement.periode}" ></td>
+          <td th:text="${traitement.nombre}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-xs-8">
+      </div>
+      <div class="col-xs-4">
+        <table class="table table-sm text-right">
+          <tr>
+            <td><strong>Total TTC</strong> : <span th:text="${facture.prix}" ></span> </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <br>
+    <p class="conditions">
+      En votre aimable règlement
+      <br>
+      Et avec nos remerciements.
+      <br>
+      Aucun escompte consenti pour règlement anticipé.
+      <br>
+      Règlement par virement bancaire.
+      <br><br>
+    </p>
+    
+    <p class="bottom-page text-right">
+       - N° 9300<br>
+      MACLINIQUE de Avenue de la Palestine Mhanech I، Tetouan, +212 5 53 80 42 62 - www.maclinique.ma
+      
+    </p>
+  </div>
+
+
+
+		
+</body>
+
+</html>

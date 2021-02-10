@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Ajouter un GP</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+		<div class="container" style="padding-left:200px;">
+			<br>
+			<br>
+			<br>
+			<div class="col-md-9">
+				<div class="card" style="text-align: center;">
+
+					<div style="color:white; text-align: center; background: linear-gradient(to right, #1341A5, #1341A5);" class="card-header">
+						Formulaire d'ajout un GP
+					</div>
+					<div class="card-body">
+						<form th:action="@{saveGP}" method="post">
+							
+							<div class="form-group">
+								<label class="control-label">Nom :</label> <input type="text"
+									name="nom" class="form-control" th:value="${gp.nom}"/>
+								<span th:errors=${gp.nom} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Prenom :</label> <input type="text"
+									name="prenom" class="form-control" th:value="${gp.prenom}">
+								<span th:errors=${gp.prenom} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Genre :</label> 
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="femme" name="genre" value="femme">
+								  <label class="form-check-label" for="femme">Femme</label>
+								</div>
+								<div class="form-check form-check-inline">
+								  <input class="form-check-input" type="radio" id="homme" name="genre" value="homme">
+								  <label class="form-check-label" for="homme">Homme</label>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="control-label">Username:</label> <input type="text"
+									name="username" class="form-control" th:value="${gp.username}">
+								<span th:errors=${gp.username} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Email :</label> <input type="text"
+									name="email" class="form-control" th:value="${gp.email}">
+								<span th:errors=${gp.email} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">CIN :</label> <input type="text"
+									name="cin" class="form-control" th:value="${gp.cin}">
+								<span th:errors=${gp.cin} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Telephone :</label> <input type="text"
+									name="tel" class="form-control" th:value="${gp.tel}">
+								<span th:errors=${gp.tel} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+							<label for="address">Adresse</label>
+								<div class="form-floating">
+								  <textarea class="form-control" th:text="${gp.address}" placeholder="" id="address" name="address"></textarea>
+								  
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label">Date de Naissance :</label> <input type="date"
+									name="date_naiss" class="form-control" th:value="${gp.date_naiss}">
+								<span th:errors=${gp.date_naiss} class="text-danger"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Password:</label> <input type="password"
+									name="password" class="form-control" th:value="${gp.password}">
+								<span th:errors=${gp.password} class="text-danger"></span>
+							</div>
+							
+							<button class="btn btn-success" type="submit">Save</button>
+						</form>
+						
+						
+					</div>
+				</div>
+			</div>
+</div>
+		<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+</body>
+</html>

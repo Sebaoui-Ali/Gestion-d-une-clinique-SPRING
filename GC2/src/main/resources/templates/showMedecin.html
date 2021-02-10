@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Afficher Patient</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+
+		<div class="container" style="padding-left:200px;">
+			<br>
+			<br>
+			<br>
+			<div class="col-md-9">
+				<div class="card" style="text-align: center;">
+
+					<div style="color:white; text-align: center; background: linear-gradient(to right, #1341A5, #1341A5);" class="card-header">
+						Affichage d'un medecin
+					</div>
+					<div class="card-body">
+							
+							<div class="form-group">
+								<label class="control-label">Nom : </label> 
+								<label class="form-control" th:text="${medecin.nom}"></label>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Prenom : </label>
+								<label class="form-control" th:text="${medecin.prenom}"></label>
+							</div>
+							
+
+							<div class="form-group">
+								<label class="control-label">Genre : </label> 
+								<label class="form-control" th:text="${medecin.genre}"></label>
+								
+							</div>
+							<div class="form-group">
+								<label class="control-label">Nom d'utilisateur : </label>
+								<label class="form-control" th:text="${medecin.username}"></label>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Email : </label>
+								<label class="form-control" th:text="${medecin.email}"></label>
+							</div>
+							<div class="form-group">
+								<label class="control-label">CIN : </label> 
+								<label class="form-control" th:text="${medecin.cin}"></label>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Telephone : </label> 
+								<label class="form-control" th:text="${medecin.tel}"></label>
+							</div>
+							
+							<div class="form-group">
+							<label for="address">Adresse</label>
+								<div class="form-floating">
+								  <textarea class="form-control" disabled th:text="${medecin.address}" placeholder="" id="address" name="address"></textarea>
+								  
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label">Date de Naissance :</label> 
+								<label class="form-control" th:text="${medecin.date_naiss}"></label>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label">Date d'ajout :</label> 
+								<label class="form-control" th:text="${medecin.date_ajout}"></label>
+							</div>
+							
+					</div>
+				</div>
+			</div>
+</div>
+	<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+		
+</body>
+
+</html>

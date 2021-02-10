@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+>
+<head>
+<title>Rendez-vous</title>
+<head th:replace="header :: header" ></head>
+
+</head>
+<body>
+<header th:replace="nav :: nav" ></header>
+		<br><br><br>
+	<div class="container" >
+		<div class="card" >
+			<div class="card-header" >
+				Liste des rendez-vous <a class="btn btn-primary" th:href="@{formRendez}">Ajouter</a> 
+			</div>
+			
+			<div class="card-body" >
+			
+			<form method="get" th:action="@{rendez_vous}" >
+				<div class="form-group" >
+					<input type="text" name="keyword" th:value="${keyword}" >
+					<button class="btn btn-success" > Chercher </button>
+				</div>
+			</form>
+			
+				<table class="table">
+			<tr>
+				<th>Patient </th>
+				<th>Medecin </th>
+				<th>Date </th>
+				<th>Heure </th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr th:each="p:${rendez_vous}" >
+				<td th:text="${p.patient}" ></td>
+				<td th:text="${p.medecin}" ></td>
+				<td th:text="${p.date}" ></td>
+				<td th:text="${p.time}" ></td>				
+				<td><a onclick="return confirm('Etes vous sur de vouloir supprimer ?') " 
+				class="btn btn-danger" 
+				th:href="@{deleteRendez(id=${p.id},keyword=${keyword},size=${size},page=${currentPage})}" >
+				Delete</a>
+				</td>
+				<td><a class="btn btn-primary" 
+				th:href="@{editRendez(id=${p.id})}" >
+				Edit</a>
+				</td>
+			</tr>
+		</table>
+			</div>	
+			<ul class="nav nav-pills">
+				<li  th:each="page,status:${pages}" >
+					<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" 
+					th:href="@{rendez_vous(page=${status.index},keyword=${keyword},size=${size})}" 
+					th:text="${status.index}" ></a>
+				</li>
+			</ul>	
+		</div>
+	</div>
+<div th:insert="footer :: footer" ></div>
+<div th:replace="script :: script" ></div>
+</body>
+</html>
